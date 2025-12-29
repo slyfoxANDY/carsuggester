@@ -1,0 +1,75 @@
+{
+    "name": "CarPedia - Your Ultimate Car Guide",
+    "short_name": "CarPedia",
+    "description": "Explore detailed car specifications, compare models, and discover your perfect vehicle",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "theme_color": "#1a1a2e",
+    "background_color": "#ffffff",
+    "icons": [
+        {
+            "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%231a1a2e' width='192' height='192'/><path fill='%23ff6b35' d='M96 40c-30.9 0-56 25.1-56 56s25.1 56 56 56 56-25.1 56-56-25.1-56-56-56zm0 100c-24.3 0-44-19.7-44-44s19.7-44 44-44 44 19.7 44 44-19.7 44-44 44z'/></svg>",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        },
+        {
+            "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%231a1a2e' width='512' height='512'/><path fill='%23ff6b35' d='M256 100c-85.9 0-156 70.1-156 156s70.1 156 156 156 156-70.1 156-156-70.1-156-156-156zm0 280c-68.4 0-124-55.6-124-124s55.6-124 124-124 124 55.6 124 124-55.6 124-124 124z'/></svg>",
+            "sizes": "512x512",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": ["lifestyle", "automotive"],
+    "screenshots": [
+        {
+            "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%231a1a2e' width='540' height='720'/><text x='270' y='360' text-anchor='middle' fill='%23ff6b35' font-size='48'>CarPedia</text></svg>",
+            "sizes": "540x720",
+            "type": "image/svg+xml",
+            "form_factor": "narrow"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Browse Cars",
+            "short_name": "Cars",
+            "description": "Browse our car database",
+            "url": "/index.html?page=cars",
+            "icons": [
+                {
+                    "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23ff6b35' width='192' height='192'/><text x='96' y='120' text-anchor='middle' font-size='80'>🚗</text></svg>",
+                    "sizes": "192x192",
+                    "type": "image/svg+xml"
+                }
+            ]
+        },
+        {
+            "name": "Find Your Car",
+            "short_name": "Quiz",
+            "description": "Take the quiz to find your perfect car",
+            "url": "/index.html?page=quiz",
+            "icons": [
+                {
+                    "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23f7931e' width='192' height='192'/><text x='96' y='120' text-anchor='middle' font-size='80'>🎯</text></svg>",
+                    "sizes": "192x192",
+                    "type": "image/svg+xml"
+                }
+            ]
+        },
+        {
+            "name": "Compare Cars",
+            "short_name": "Compare",
+            "description": "Compare selected vehicles side by side",
+            "url": "/index.html?page=compare",
+            "icons": [
+                {
+                    "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%234a90e2' width='192' height='192'/><text x='96' y='120' text-anchor='middle' font-size='80'>⚖️</text></svg>",
+                    "sizes": "192x192",
+                    "type": "image/svg+xml"
+                }
+            ]
+        }
+    ]
+}

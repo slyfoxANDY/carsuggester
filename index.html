@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="description" content="CarPedia - Explore detailed car specifications, compare models, and discover your perfect vehicle">
+    <title>CarPedia - Your Ultimate Car Guide</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%231a1a2e' width='192' height='192'/><path fill='%23ff6b35' d='M96 40c-30.9 0-56 25.1-56 56s25.1 56 56 56 56-25.1 56-56-25.1-56-56-56zm0 100c-24.3 0-44-19.7-44-44s19.7-44 44-44 44 19.7 44 44-19.7 44-44 44z'/></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%231a1a2e' width='192' height='192'/><circle cx='96' cy='96' r='50' fill='%23ff6b35'/></svg>">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <div class="logo">🚗</div>
+                    <span>CarPedia</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#" onclick="showHome()" class="nav-link active" data-page="home">Home</a></li>
+                    <li><a href="#" onclick="showCars()" class="nav-link" data-page="cars">Cars</a></li>
+                    <li><a href="#" onclick="showQuiz()" class="nav-link" data-page="quiz">Quiz</a></li>
+                    <li><a href="#" onclick="showComparison()" class="nav-link" data-page="compare">Compare</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Home Page -->
+        <section id="home-page" class="page active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Welcome to CarPedia</h1>
+                    <p>Discover detailed specifications, mechanical insights, and find your perfect vehicle</p>
+                    <div class="hero-buttons">
+                        <button onclick="showQuiz()" class="btn btn-primary">Take Quiz</button>
+                        <button onclick="showCars()" class="btn btn-secondary">Explore Cars</button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <svg class="car-illustration" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="carGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#f7931e;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Car Body -->
+                        <ellipse cx="200" cy="100" rx="120" ry="50" fill="url(#carGrad)"/>
+                        <!-- Cabin -->
+                        <rect x="140" y="60" width="120" height="35" fill="url(#carGrad)" rx="10"/>
+                        <!-- Windows -->
+                        <rect x="155" y="65" width="30" height="20" fill="#87ceeb" opacity="0.6" rx="3"/>
+                        <rect x="215" y="65" width="30" height="20" fill="#87ceeb" opacity="0.6" rx="3"/>
+                        <!-- Wheels -->
+                        <circle cx="130" cy="155" r="20" fill="#333"/>
+                        <circle cx="130" cy="155" r="12" fill="#666"/>
+                        <circle cx="270" cy="155" r="20" fill="#333"/>
+                        <circle cx="270" cy="155" r="12" fill="#666"/>
+                        <!-- Headlights -->
+                        <circle cx="80" cy="90" r="8" fill="#ffff99"/>
+                        <circle cx="80" cy="110" r="8" fill="#ffff99"/>
+                        <!-- Details -->
+                        <path d="M 100 140 L 300 140" stroke="#333" stroke-width="3"/>
+                    </svg>
+                </div>
+            </div>
+
+            <section class="features">
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">⚙️</div>
+                        <h3>Detailed Specs</h3>
+                        <p>Engine, performance, and mechanical data for every car</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3>Side-by-Side Compare</h3>
+                        <p>Compare up to 3 vehicles across all metrics</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Smart Recommendations</h3>
+                        <p>Answer our quiz to get personalized vehicle suggestions</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Offline Access</h3>
+                        <p>Browse cars anytime, anywhere with PWA technology</p>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Cars List Page -->
+        <section id="cars-page" class="page">
+            <div class="page-header">
+                <h1>Car Database</h1>
+                <p>Explore detailed specifications for various car models</p>
+            </div>
+
+            <div class="filter-section">
+                <input type="text" id="carSearch" placeholder="Search cars..." class="search-input" oninput="filterCars()">
+                <select id="brandFilter" onchange="filterCars()" class="filter-select">
+                    <option value="">All Brands</option>
+                    <option value="Tesla">Tesla</option>
+                    <option value="BMW">BMW</option>
+                    <option value="Porsche">Porsche</option>
+                    <option value="Ferrari">Ferrari</option>
+                    <option value="Lamborghini">Lamborghini</option>
+                    <option value="Ford">Ford</option>
+                    <option value="Chevrolet">Chevrolet</option>
+                    <option value="Toyota">Toyota</option>
+                </select>
+            </div>
+
+            <div id="cars-grid" class="cars-grid">
+                <!-- Cars will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Car Detail Modal -->
+        <div id="carDetailModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <div class="car-detail-container">
+                    <div class="car-detail-header">
+                        <h1 id="carDetailName"></h1>
+                        <div class="car-rating">
+                            <span id="carDetailRating" class="rating-stars"></span>
+                            <span id="carDetailScore"></span>
+                        </div>
+                    </div>
+
+                    <div class="detail-tabs">
+                        <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
+                        <button class="tab-btn" onclick="switchTab('engine')">Engine</button>
+                        <button class="tab-btn" onclick="switchTab('performance')">Performance</button>
+                        <button class="tab-btn" onclick="switchTab('interior')">Interior</button>
+                        <button class="tab-btn" onclick="switchTab('proscons')">Pros & Cons</button>
+                    </div>
+
+                    <!-- Overview Tab -->
+                    <div id="overview-tab" class="tab-content active">
+                        <div class="spec-grid">
+                            <div class="spec-item">
+                                <span class="spec-label">Category</span>
+                                <span class="spec-value" id="carDetailCategory"></span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Year</span>
+                                <span class="spec-value" id="carDetailYear"></span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Starting Price</span>
+                                <span class="spec-value" id="carDetailPrice"></span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Fuel Type</span>
+                                <span class="spec-value" id="carDetailFuel"></span>
+                            </div>
+                        </div>
+                        <p id="carDetailDescription" class="description"></p>
+                    </div>
+
+                    <!-- Engine Tab -->
+                    <div id="engine-tab" class="tab-content">
+                        <div class="engine-visual">
+                            <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Engine Block -->
+                                <rect x="50" y="100" width="300" height="120" fill="#333" stroke="#666" stroke-width="2" rx="5"/>
+                                <!-- Cylinders -->
+                                <circle cx="100" cy="150" r="15" fill="#666" stroke="#999" stroke-width="1"/>
+                                <circle cx="150" cy="150" r="15" fill="#666" stroke="#999" stroke-width="1"/>
+                                <circle cx="200" cy="150" r="15" fill="#666" stroke="#999" stroke-width="1"/>
+                                <circle cx="250" cy="150" r="15" fill="#666" stroke="#999" stroke-width="1"/>
+                                <circle cx="300" cy="150" r="15" fill="#666" stroke="#999" stroke-width="1"/>
+                                <!-- Intake Manifold -->
+                                <path d="M 75 80 L 325 80 L 320 100 L 80 100 Z" fill="#ff6b35" stroke="#333" stroke-width="2"/>
+                                <!-- Exhaust Manifold -->
+                                <path d="M 75 220 L 325 220 L 330 240 L 70 240 Z" fill="#ff3333" stroke="#333" stroke-width="2"/>
+                                <!-- Labels -->
+                                <text x="200" y="270" text-anchor="middle" fill="#333" font-size="16" font-weight="bold">Internal Engine View</text>
+                            </svg>
+                        </div>
+                        <div class="spec-grid">
+                            <div class="spec-item">
+                                <span class="spec-label">Engine Type</span>
+                                <span class="spec-value" id="carDetailEngineType"></span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Displacement</span>
+                                <span class="spec-value" id="carDetailDisplacement"></span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Horsepower</span>
+                                <span class="spec-value" id="carDetailHP"></span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Torque</span>
+                                <span class="spec-value" id="carDetailTorque"></span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Transmission</span>
+                                <span class="spec-value" id="carDetailTransmission"></span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Fuel Economy</span>
+                                <span class="spec-value" id="carDetailFuelEconomy"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Performance Tab -->
+                    <div id="performance-tab" class="tab-content">
+                        <div class="performance-bars">
+                            <div class="performance-item">
+                                <span class="perf-label">0-60 mph</span>
+                                <div class="perf-bar">
+                                    <div class="perf-fill" id="carPerfAccel" style="width: 0%"></div>
+                                </div>
+                                <span class="perf-value" id="carPerfAccelVal"></span>
+                            </div>
+                            <div class="performance-item">
+                                <span class="perf-label">Top Speed</span>
+                                <div class="perf-bar">
+                                    <div class="perf-fill" id="carPerfSpeed" style="width: 0%"></div>
+                                </div>
+                                <span class="perf-value" id="carPerfSpeedVal"></span>
+                            </div>
+                            <div class="performance-item">
+                                <span class="perf-label">Handling</span>
+                                <div class="perf-bar">
+                                    <div class="perf-fill" id="carPerfHandling" style="width: 0%"></div>
+                                </div>
+                                <span class="perf-value" id="carPerfHandlingVal"></span>
+                            </div>
+                            <div class="performance-item">
+                                <span class="perf-label">Comfort</span>
+                                <div class="perf-bar">
+                                    <div class="perf-fill" id="carPerfComfort" style="width: 0%"></div>
+                                </div>
+                                <span class="perf-value" id="carPerfComfortVal"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interior Tab -->
+                    <div id="interior-tab" class="tab-content">
+                        <div class="interior-visual">
+                            <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Car Top View -->
+                                <rect x="80" y="40" width="240" height="220" fill="#8b7355" stroke="#333" stroke-width="2" rx="20"/>
+                                <!-- Front Seats -->
+                                <rect x="100" y="60" width="60" height="50" fill="#2d2d2d" stroke="#666" stroke-width="1" rx="3"/>
+                                <rect x="240" y="60" width="60" height="50" fill="#2d2d2d" stroke="#666" stroke-width="1" rx="3"/>
+                                <!-- Rear Seats -->
+                                <rect x="100" y="180" width="140" height="50" fill="#2d2d2d" stroke="#666" stroke-width="1" rx="3"/>
+                                <!-- Dashboard -->
+                                <rect x="80" y="40" width="240" height="15" fill="#333" stroke="#666" stroke-width="1"/>
+                                <!-- Steering Wheel -->
+                                <circle cx="170" cy="85" r="12" fill="#2d2d2d" stroke="#666" stroke-width="1"/>
+                                <circle cx="170" cy="85" r="8" fill="none" stroke="#ff6b35" stroke-width="2"/>
+                                <!-- Trunk -->
+                                <text x="200" y="280" text-anchor="middle" fill="#333" font-size="14">Interior Layout</text>
+                            </svg>
+                        </div>
+                        <div class="spec-grid">
+                            <div class="spec-item">
+                                <span class="spec-label">Seating</span>
+                                <span class="spec-value" id="carDetailSeating"></span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Cargo Space</span>
+                                <span class="spec-value" id="carDetailCargo"></span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Features</span>
+                                <span class="spec-value" id="carDetailFeatures"></span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Technology</span>
+                                <span class="spec-value" id="carDetailTech"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pros & Cons Tab -->
+                    <div id="proscons-tab" class="tab-content">
+                        <div class="pros-cons-container">
+                            <div class="pros-section">
+                                <h3>✅ Pros</h3>
+                                <ul id="carDetailPros" class="pros-list"></ul>
+                            </div>
+                            <div class="cons-section">
+                                <h3>❌ Cons</h3>
+                                <ul id="carDetailCons" class="cons-list"></ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button onclick="addToComparison()" class="btn btn-primary">Add to Compare</button>
+                        <button onclick="closeModal()" class="btn btn-secondary">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Page -->
+        <section id="quiz-page" class="page">
+            <div class="page-header">
+                <h1>Find Your Perfect Car</h1>
+                <p>Answer a few questions about your preferences</p>
+            </div>
+
+            <div class="quiz-container">
+                <div id="quizContent" class="quiz-content">
+                    <!-- Quiz questions will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Page -->
+        <section id="compare-page" class="page">
+            <div class="page-header">
+                <h1>Compare Cars</h1>
+                <p>Side-by-side comparison of your selected vehicles</p>
+            </div>
+
+            <div class="comparison-container">
+                <div id="comparisonContent" class="comparison-content">
+                    <p class="empty-message">Select cars to compare them here</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Chatbot Widget -->
+        <div id="chat-button" class="chat-button" onclick="toggleChatbot()">
+            <span class="chat-icon">💬</span>
+            <span class="chat-label">Ask AI</span>
+        </div>
+
+        <div id="chat-panel" class="chat-panel">
+            <div class="chat-header">
+                <h3>CarPedia AI Assistant</h3>
+                <button class="chat-close" onclick="toggleChatbot()">✕</button>
+            </div>
+            <div id="chat-messages" class="chat-messages">
+                <div class="chat-message chat-message-bot">
+                    <div class="chat-message-content">👋 Hi! I'm your AI assistant. Ask me about cars, recommendations, prices, or performance specs!</div>
+                </div>
+            </div>
+            <div class="chat-input-container">
+                <input 
+                    type="text" 
+                    id="chat-input" 
+                    class="chat-input" 
+                    placeholder="Ask me anything about cars..." 
+                    autocomplete="off"
+                >
+                <button class="chat-send" onclick="sendChatMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="chatbot.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

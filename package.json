@@ -1,0 +1,25 @@
+{
+    "name": "carpedia-pwa",
+    "version": "1.0.0",
+    "description": "CarPedia - Your Ultimate Car Guide PWA",
+    "main": "app.js",
+    "scripts": {
+        "start": "python -m http.server 8000",
+        "serve": "npx http-server -p 8000",
+        "build": "echo 'PWA is ready to deploy'",
+        "test": "echo 'No tests configured'"
+    },
+    "keywords": [
+        "cars",
+        "vehicles",
+        "specifications",
+        "comparison",
+        "pwa",
+        "progressive-web-app"
+    ],
+    "author": "CarPedia Team",
+    "license": "MIT",
+    "dependencies": {
+        "dotenv": "^17.2.3"
+    }
+}
